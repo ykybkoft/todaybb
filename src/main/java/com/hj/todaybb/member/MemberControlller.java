@@ -55,7 +55,9 @@ public class MemberControlller {
     }
 
     @GetMapping("/myPage")
-    String myPage() {return "member/myPage.html";}
+    String myPage(Authentication auth) {
+
+        return "member/myPage.html";}
 
 
 

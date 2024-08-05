@@ -23,10 +23,16 @@ public class MyUserDetailService implements UserDetailsService {
         if(result.isEmpty()){
             throw new UsernameNotFoundException("그런 아이디는 없습니다.");
         }
-        var user = result.get();
 
+        var user = result.get();
         List<GrantedAuthority> authList = new ArrayList<>();
         authList.add(new SimpleGrantedAuthority("normal"));
-        return new User(user.getUsername(), user.getPassword(),authList);
+
+        CustomUser customUser = new CustomUser(user.getUsername(), user.getPassword(),authList);
+        customUser.setId(user.getId());
+        customUser.setNick(user.getNick());
+        return customUser;
     }
 }
+
+
